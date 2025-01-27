@@ -18,7 +18,7 @@ var tasks = map[int]contract.Task{
 
 func main() {
 	mux := createMux()
-	server.RunQuicHTTP3Server("../../tlsKeysAndCertificates/server-cert.crt", "../../tlsKeysAndCertificates/server-key.pem", mux)
+	server.RunQuicHTTP3Server("../../tlsKeysAndCertificates/my-server-cert.crt", "../../tlsKeysAndCertificates/my-server-key.pem", mux)
 }
 
 func createMux() *http.ServeMux {

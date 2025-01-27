@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"gohttp3/client"
@@ -10,8 +9,6 @@ import (
 	"io"
 	"net/http"
 	"strings"
-
-	"github.com/quic-go/quic-go"
 )
 
 func main() {
@@ -19,11 +16,11 @@ func main() {
 	http3Client1 := client.CreateHTTP3Client()
 	makeCalls(http3Client1)
 
-	fmt.Println("-------------------------------HTTP3 Client with TLS and Quick Config-------------------------------")
-	tlsConfig := tls.Config{}
-	quicConfig := quic.Config{}
-	http3Client2 := client.CreateHTTP3ConfigClient(&tlsConfig, &quicConfig)
-	makeCalls(http3Client2)
+	// fmt.Println("-------------------------------HTTP3 Client with TLS and Quick Config-------------------------------")
+	// tlsConfig := tls.Config{}
+	// quicConfig := quic.Config{}
+	// http3Client2 := client.CreateHTTP3ConfigClient(&tlsConfig, &quicConfig)
+	// makeCalls(http3Client2)
 }
 
 func makeCalls(http3Client *http.Client) {
@@ -64,6 +61,8 @@ func makeCalls(http3Client *http.Client) {
 			fmt.Println("Error", err)
 			return
 		}
+		fmt.Println("URL:", url)
+		fmt.Println("HTTP Version:", resp.Proto)
 		fmt.Println("Body:", string(body))
 	}
 }
